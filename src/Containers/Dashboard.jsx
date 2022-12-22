@@ -27,6 +27,9 @@ function Dashboard() {
         <Col sm="12" md="6">
           <LineChart city={city} type="temperature" />
         </Col>
+        <Col sm="12" md="6">
+          <DoubleLineChart city={city} type="feelslike" />
+        </Col>
       </Row>
     </Container>
   );

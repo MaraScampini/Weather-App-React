@@ -27,12 +27,17 @@ function BarChart({ city, type }) {
     labels: [],
     datasets: [
       {
-        label: "Users gained",
+        label: "",
         data: [],
-        backgroundColor: ["#000000", "#656565"],
+        backgroundColor: ["", ""],
       },
     ],
   });
+
+  let options = {
+    responsive: true,
+  };
+  
   useEffect(() => {
     Forecast(city).then((data) => setData(data));
   }, []);
@@ -50,13 +55,13 @@ function BarChart({ city, type }) {
         {
           label: labelType,
           data: results,
-          backgroundColor: ["#000000", "#656565"],
+          backgroundColor: ["#EF4765"],
         },
       ],
     });
   }, [dates, results]);
 
-  return <Bar data={chartData} />;
+  return <Bar data={chartData} options={options} />;
 }
 
 export default BarChart;

@@ -36,15 +36,20 @@ function DoubleLineChart({ city, type }) {
       {
         label: "",
         data: [],
-        backgroundColor: ["#000000"],
+        backgroundColor: [""],
       },
       {
         label: "",
         data: [],
-        backgroundColor: ["#FF2D00"],
+        backgroundColor: [""],
       },
     ],
   });
+
+  let options = {
+    responsive: true,
+  };
+
   useEffect(() => {
     Forecast(city).then((data) => setData(data));
   }, []);
@@ -63,18 +68,27 @@ function DoubleLineChart({ city, type }) {
         {
           label: labelTypeSet1,
           data: resultsSet1,
-          backgroundColor: ["#000000"],
+          fill: {
+            target: "origin",
+            above: "#ffa53f1e",
+          },
+          backgroundColor: ["#FF9A5A"],
         },
+
         {
           label: labelTypeSet2,
           data: resultsSet2,
-          backgroundColor: ["#FF2D00"],
+          fill: {
+            target: "origin",
+            above: "#ef47661f",
+          },
+          backgroundColor: ["#EF4765"],
         },
       ],
     });
   }, [dates, resultsSet1, resultsSet2]);
 
-  return <Line data={chartData} />;
+  return <Line data={chartData} options={options}/>;
 }
 
 export default DoubleLineChart;

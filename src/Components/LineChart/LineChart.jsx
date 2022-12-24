@@ -27,12 +27,17 @@ function LineChart({ city, type }) {
     labels: [],
     datasets: [
       {
-        label: "Users gained",
+        label: "",
         data: [],
-        backgroundColor: ["#000000", "#656565"],
+        backgroundColor: ["", ""],
       },
     ],
   });
+
+  let options = {
+    responsive: true,
+  };
+
   useEffect(() => {
     Forecast(city).then((data) => setData(data));
   }, []);
@@ -50,13 +55,17 @@ function LineChart({ city, type }) {
         {
           label: labelType,
           data: results,
-          backgroundColor: ["#000000", "#656565"],
+          fill: {
+            target: "origin",
+            above: "#FF9A5A1F",
+          },
+          backgroundColor: ["#FF9A5A"],
         },
       ],
     });
   }, [dates, results]);
 
-  return <Line data={chartData} />;
+  return <Line data={chartData} options={options} />;
 }
 
 export default LineChart;

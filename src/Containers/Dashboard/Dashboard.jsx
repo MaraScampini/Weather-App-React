@@ -1,27 +1,71 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import '../../App.css';
+import { RegionContext } from "../../Context/RegionContext";
 
+import "../../App.css";
 import BarChart from "../../Components/BarChart/BarChart";
 import DoubleLineChart from "../../Components/DoubleLineChart/DoubleLineChart";
 import LineChart from "../../Components/LineChart/LineChart";
 
 function Dashboard() {
-  const [city, setCity] = useState("valencia,es");
+  let cities = {
+    city1: "",
+    city2: "",
+    city3: "",
+  };
+  let buttons={
+    button1: "",
+    button2: "",
+    button3: "",
+  };
+  const { region } = useContext(RegionContext);
+
+  switch (region) {
+    case "europe":
+      cities = {
+        city1: "madrid,es",
+        city2: "london,uk",
+        city3: "paris,fr",
+      };
+      buttons={
+          button1: "Madrid",
+          button2: "London",
+          button3: "Paris",
+      };
+    case "northamerica":
+      cities = {
+        city1: "new%20york,us",
+        city2: "los%20angeles,us",
+        city3: "toronto,ca",
+      };
+      buttons={
+          button1: "New York",
+          button2: "Los Angeles",
+          button3: "Toronto",
+      };
+  }
+  const [city, setCity] = useState(cities.city1);
 
   const clickHandler = (city) => {
     setCity(city);
     return true;
   };
 
+
   return (
     <Container fluid className="container">
       <Row>
         <Col className="d-flex justify-content-center">
-          <Button onClick={() => clickHandler("valencia,es")} id="cityButton">Valencia</Button>
-          <Button onClick={() => clickHandler("madrid,es")} id="cityButton">Madrid</Button>
-          <Button onClick={() => clickHandler("barcelona,es")} id="cityButton">Barcelona</Button>
+          <Button onClick={() => clickHandler(cities.city1)} id="cityButton">
+            {buttons.button1}
+          </Button>
+          <Button onClick={() => clickHandler(cities.city2)} id="cityButton">
+            {buttons.button2}
+          </Button>
+          <Button onClick={() => clickHandler(cities.city3)} id="cityButton">
+            {buttons.button3}
+          </Button>
         </Col>
       </Row>
       <Row className="d-flex justify-content-center">

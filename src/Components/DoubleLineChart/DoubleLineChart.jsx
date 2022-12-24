@@ -70,7 +70,8 @@ function DoubleLineChart({ city, type }) {
           data: resultsSet1,
           fill: {
             target: "origin",
-            above: "#ffa53f1e",
+            above: "#FF9A5A1E",
+            below: "#FF9A5A1E",
           },
           backgroundColor: ["#FF9A5A"],
         },
@@ -80,7 +81,8 @@ function DoubleLineChart({ city, type }) {
           data: resultsSet2,
           fill: {
             target: "origin",
-            above: "#ef47661f",
+            above: "#ef47651f",
+            below: "#ef47651f",
           },
           backgroundColor: ["#EF4765"],
         },

@@ -58,6 +58,7 @@ function LineChart({ city, type }) {
           fill: {
             target: "origin",
             above: "#FF9A5A1F",
+            below: "#FF9A5A1F",
           },
           backgroundColor: ["#FF9A5A"],
         },

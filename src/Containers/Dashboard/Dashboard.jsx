@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import '../../App.css';
 
 import BarChart from "../../Components/BarChart/BarChart";
 import DoubleLineChart from "../../Components/DoubleLineChart/DoubleLineChart";
@@ -15,25 +16,25 @@ function Dashboard() {
   };
 
   return (
-    <Container fluid>
-      Dashboard
+    <Container fluid className="container">
       <Row>
-        <Col>
-          <Button onClick={() => clickHandler("valencia,es")}>Valencia</Button>
-          <Button onClick={() => clickHandler("madrid,es")}>Madrid</Button>
+        <Col className="d-flex justify-content-center">
+          <Button onClick={() => clickHandler("valencia,es")} id="cityButton">Valencia</Button>
+          <Button onClick={() => clickHandler("madrid,es")} id="cityButton">Madrid</Button>
+          <Button onClick={() => clickHandler("barcelona,es")} id="cityButton">Barcelona</Button>
         </Col>
       </Row>
-      <Row>
-        <Col sm="12" md="6">
+      <Row className="d-flex justify-content-center">
+        <Col sm="12" md="5" className="widget">
           <LineChart city={city} type="temperature" />
         </Col>
-        <Col sm="12" md="6">
+        <Col sm="12" md="5" className="widget">
           <DoubleLineChart city={city} type="feelslike" />
         </Col>
-        <Col sm="12" md="6">
+        <Col sm="12" md="5" className="widget">
           <LineChart city={city} type="humidity" />
         </Col>
-        <Col sm="12" md="6">
+        <Col sm="12" md="5" className="widget">
           <BarChart city={city} type="windSpeed" />
         </Col>
       </Row>

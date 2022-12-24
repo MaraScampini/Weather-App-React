@@ -33,6 +33,7 @@ function Dashboard() {
           button2: "London",
           button3: "Paris",
       };
+      break;
     case "northamerica":
       cities = {
         city1: "new%20york,us",
@@ -44,6 +45,7 @@ function Dashboard() {
           button2: "Los Angeles",
           button3: "Toronto",
       };
+      break;
   }
   const [city, setCity] = useState(cities.city1);
 

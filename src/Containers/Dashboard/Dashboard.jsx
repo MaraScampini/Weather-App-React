@@ -11,6 +11,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 function Dashboard() {
   let navigate = useNavigate();
+  // Initial state for the cities and buttons that will appear in the dashboard.
   let [cities, setCities] = useState({
     city1: "",
     city2: "",
@@ -21,11 +22,12 @@ function Dashboard() {
     button2: "",
     button3: "",
   });
+  // Use the region stored in our context's state to determine which cities we will be able to see in the dashboard. Use localStorage to store that data so it won't be lost if the user recharges the page.
   const { region } = useContext(RegionContext);
 
   let localRegion = region || localStorage.getItem("region");
   const [city, setCity] = useState("");
-
+  // When the component loads, use the region data available to determine the cities the user can see in the dashboard.
   useEffect(() => {
     switch (localRegion) {
       case "europe":
@@ -57,16 +59,17 @@ function Dashboard() {
         break;
     }
   }, []);
-
+  // This handler controls the action of the buttons to change cities.
   const clickHandler = (city) => {
     setCity(city);
     return true;
   };
-
+  // Handler to go back to the landing page, removes the region from localStorage.
   const backHandler = () => {
     navigate("/");
     localStorage.removeItem("region");
   };
+  // Conditional rendering of the data. If the API calls have been successful, shows the complete dashboard with the graphics. If not, shows a spinner.
   if (city !== "") {
     return (
       <Container fluid className="container">
@@ -107,7 +110,11 @@ function Dashboard() {
       </Container>
     );
   } else {
-    return <h1>LOADING</h1>;
+    return (
+      <Container className="d-flex align-items-center justify-content-center">
+        <div class="lds-dual-ring"></div>
+      </Container>
+    );
   }
 }
 

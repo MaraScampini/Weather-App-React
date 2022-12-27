@@ -13,7 +13,6 @@ function Landing() {
   }
   return (
     <Container className="d-flex flex-column justify-content-center landing">
-      {/* <div className="landing"> */}
         <Row>
           <Col className="d-flex justify-content-center">
             <span className="titleSpan">CHOOSE YOUR REGION</span>
@@ -32,7 +31,6 @@ function Landing() {
             </button>
           </Col>
         </Row>
-      {/* </div> */}
     </Container>
   );
 }

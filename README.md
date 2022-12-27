@@ -4,6 +4,8 @@ This project consists of a basic weather graphics app. The app allows the user t
 
 The data available for the cities' forecast is displayed in graphics.
 
+Deploy: <https://master.ddxv996pdaqx6.amplifyapp.com/>
+
 <img src='./public/landing.png'>
 <img src='./public/dashboard.png'>
 

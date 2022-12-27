@@ -38,9 +38,7 @@ function BarChart({ city, type }) {
     responsive: true,
   };
   
-  useEffect(() => {
-    Forecast(city).then((data) => setData(data));
-  }, []);
+
   useEffect(() => {
     Forecast(city).then((data) => setData(data));
   }, [city]);

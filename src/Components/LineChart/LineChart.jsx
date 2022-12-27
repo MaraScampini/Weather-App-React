@@ -40,11 +40,6 @@ function LineChart({ city, type }) {
 
   useEffect(() => {
     Forecast(city).then((data) => setData(data));
-    console.log(data
-      )
-  }, []);
-  useEffect(() => {
-    Forecast(city).then((data) => setData(data));
   }, [city]);
   useEffect(() => {
     setDates(data.map((data) => data.dt_txt.slice(5, 16)));

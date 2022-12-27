@@ -15,11 +15,11 @@ function BarChart({ city, type }) {
   switch (type) {
     case "windSpeed":
       dataType = data.map((data) => data.wind.speed);
-      labelType = "Wind speed forecast";
+      labelType = "Wind speed forecast in km/h";
       break;
-    case "temperature":
-      dataType = data.map((data) => data.main.temp);
-      labelType = "Temperature forecast";
+    case "windGust":
+      dataType = data.map((data) => data.wind.gust);
+      labelType = "Wind gust forecast in km/h";
       break;
   }
 

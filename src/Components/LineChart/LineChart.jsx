@@ -15,11 +15,11 @@ function LineChart({ city, type }) {
   switch (type) {
     case "temperature":
       dataType = data.map((data) => data.main.temp);
-      labelType = "Temperature forecast";
+      labelType = "Temperature forecast in ºC";
       break;
     case "humidity":
       dataType = data.map((data) => data.main.humidity);
-      labelType = "Humidity forecast";
+      labelType = "Humidity forecast in %";
       break;
   }
 
@@ -40,6 +40,8 @@ function LineChart({ city, type }) {
 
   useEffect(() => {
     Forecast(city).then((data) => setData(data));
+    console.log(data
+      )
   }, []);
   useEffect(() => {
     Forecast(city).then((data) => setData(data));

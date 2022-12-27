@@ -19,14 +19,14 @@ function DoubleLineChart({ city, type }) {
     case "temperature":
       dataTypeSet1 = data.map((data) => data.main.temp_max);
       dataTypeSet2 = data.map((data) => data.main.temp_min);
-      labelTypeSet1 = "Max temperatures forecast";
-      labelTypeSet2 = "Min temperatures forecast";
+      labelTypeSet1 = "Max temperatures forecast in ºC";
+      labelTypeSet2 = "Min temperatures forecast in ºC";
       break;
     case "feelslike":
       dataTypeSet1 = data.map((data) => data.main.temp);
       dataTypeSet2 = data.map((data) => data.main.feels_like);
-      labelTypeSet1 = "Temperatures forecast";
-      labelTypeSet2 = "Feels like";
+      labelTypeSet1 = "Temperatures forecast in ºC";
+      labelTypeSet2 = "Feels like in ºC";
       break;
   }
 

@@ -10,7 +10,6 @@ import LineChart from "../../Components/LineChart/LineChart";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function Dashboard() {
-
   let navigate = useNavigate();
   let [cities, setCities] = useState({
     city1: "",
@@ -25,6 +24,7 @@ function Dashboard() {
   const { region } = useContext(RegionContext);
 
   let localRegion = region || localStorage.getItem("region");
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     switch (localRegion) {
@@ -39,6 +39,7 @@ function Dashboard() {
           button2: "London",
           button3: "Paris",
         });
+        setCity("madrid,es");
         break;
       case "northamerica":
         setCities({
@@ -51,14 +52,12 @@ function Dashboard() {
           button2: "Los Angeles",
           button3: "Toronto",
         });
+        setCity("new%20york,us");
+
         break;
     }
   }, []);
-  const [city, setCity] = useState("");
 
-  useEffect(() => {
-    setCity(cities.city1);
-  }, [cities, buttons]);
   const clickHandler = (city) => {
     setCity(city);
     return true;
@@ -67,7 +66,7 @@ function Dashboard() {
   const backHandler = () => {
     navigate("/");
     localStorage.removeItem("region");
-  }
+  };
   if (city !== "") {
     return (
       <Container fluid className="container">
@@ -86,9 +85,6 @@ function Dashboard() {
         </Row>
         <Row className="d-flex justify-content-center">
           <Col sm="12" md="5" className="widget">
-            <LineChart city={city} type="temperature" />
-          </Col>
-          <Col sm="12" md="5" className="widget">
             <DoubleLineChart city={city} type="feelslike" />
           </Col>
           <Col sm="12" md="5" className="widget">
@@ -96,6 +92,9 @@ function Dashboard() {
           </Col>
           <Col sm="12" md="5" className="widget">
             <BarChart city={city} type="windSpeed" />
+          </Col>
+          <Col sm="12" md="5" className="widget">
+            <BarChart city={city} type="windGust" />
           </Col>
         </Row>
         <Row>
@@ -107,11 +106,9 @@ function Dashboard() {
         </Row>
       </Container>
     );
+  } else {
+    return <h1>LOADING</h1>;
   }
- else {
-  return (
-    <h1>LOADING</h1>
-  )
-}}
+}
 
 export default Dashboard;

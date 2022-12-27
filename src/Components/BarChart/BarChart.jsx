@@ -6,10 +6,12 @@ import { useState, useEffect } from "react";
 import { Forecast } from "../../Services/ApiCalls";
 
 function BarChart({ city, type }) {
+  // Use data for the information sent by the API, dates to set the labels for day and hour and results for the filtered data itself that the graphics will use
   const [data, setData] = useState([]);
   const [dates, setDates] = useState([]);
   const [results, setResults] = useState([]);
 
+  // Depending on the type of graphic the results will be set with one type of data or another and the labels also change.
   let dataType;
   let labelType;
   switch (type) {
@@ -22,7 +24,7 @@ function BarChart({ city, type }) {
       labelType = "Wind gust forecast in km/h";
       break;
   }
-
+  // Initial state for the data that will go into the chart
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -37,8 +39,8 @@ function BarChart({ city, type }) {
   let options = {
     responsive: true,
   };
-  
 
+  // Asynchronous calls to the API, first get the forecast data for each city, depending on the city that we're receiving from the dashboard buttons, then set the dates and results when the data is received and, finally, set all of it into the graphics.
   useEffect(() => {
     Forecast(city).then((data) => setData(data));
   }, [city]);

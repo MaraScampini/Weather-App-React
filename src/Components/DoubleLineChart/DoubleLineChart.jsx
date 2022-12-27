@@ -6,11 +6,13 @@ import { useState, useEffect } from "react";
 import { Forecast } from "../../Services/ApiCalls";
 
 function DoubleLineChart({ city, type }) {
+  // Use data for the information sent by the API, dates to set the labels for day and hour and results for the filtered data itself that the graphics will use. In this case, we will be working with two datasets.
   const [data, setData] = useState([]);
   const [dates, setDates] = useState([]);
   const [resultsSet1, setResultsSet1] = useState([]);
   const [resultsSet2, setResultsSet2] = useState([]);
 
+  // Depending on the type of graphic the results will be set with one type of data or another and the labels also change.
   let dataTypeSet1;
   let dataTypeSet2;
   let labelTypeSet1;
@@ -29,7 +31,7 @@ function DoubleLineChart({ city, type }) {
       labelTypeSet2 = "Feels like in ºC";
       break;
   }
-
+  // Initial state for the data that will go into the chart
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -49,8 +51,7 @@ function DoubleLineChart({ city, type }) {
   let options = {
     responsive: true,
   };
-
-
+  // Asynchronous calls to the API, first get the forecast data for each city, depending on the city that we're receiving from the dashboard buttons, then set the dates and results when the data is received and, finally, set all of it into the graphics.
   useEffect(() => {
     Forecast(city).then((data) => setData(data));
   }, [city]);
@@ -88,7 +89,7 @@ function DoubleLineChart({ city, type }) {
     });
   }, [dates, resultsSet1, resultsSet2]);
 
-  return <Line data={chartData} options={options}/>;
+  return <Line data={chartData} options={options} />;
 }
 
 export default DoubleLineChart;

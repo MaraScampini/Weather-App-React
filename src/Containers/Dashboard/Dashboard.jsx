@@ -7,8 +7,11 @@ import "../../App.css";
 import BarChart from "../../Components/BarChart/BarChart";
 import DoubleLineChart from "../../Components/DoubleLineChart/DoubleLineChart";
 import LineChart from "../../Components/LineChart/LineChart";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Dashboard() {
+
+  let navigate = useNavigate();
   let [cities, setCities] = useState({
     city1: "",
     city2: "",
@@ -60,6 +63,11 @@ function Dashboard() {
     setCity(city);
     return true;
   };
+
+  const backHandler = () => {
+    navigate("/");
+    localStorage.removeItem("region");
+  }
   if (city !== "") {
     return (
       <Container fluid className="container">
@@ -88,6 +96,13 @@ function Dashboard() {
           </Col>
           <Col sm="12" md="5" className="widget">
             <BarChart city={city} type="windSpeed" />
+          </Col>
+        </Row>
+        <Row>
+          <Col className="d-flex justify-content-center">
+            <Button onClick={() => backHandler()} id="cityButton">
+              Back
+            </Button>
           </Col>
         </Row>
       </Container>
